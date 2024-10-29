@@ -1,11 +1,15 @@
 {
-  "downloadURL": "mcr.microsoft.com/oss/binaries/kubernetes/kubernetes-node:*",
-  "amd64OnlyVersions": [],
-  "multiArchVersionsV2": [
+  "ContainerImages": [
     {
-      "renovateTag": "registry=https://mcr.microsoft.com, name=oss/binaries/kubernetes/kubernetes-node",
-            "latestVersion": "1.30.5",
-            "previousLatestVersion": "1.30.4"
+      "downloadURL": "mcr.microsoft.com/oss/binaries/kubernetes/kubernetes-node:*",
+      "amd64OnlyVersions": [],
+      "multiArchVersionsV2": [
+        {
+          "renovateTag": "registry=https://mcr.microsoft.com, name=oss/binaries/kubernetes/kubernetes-node",
+          "latestVersion": "1.30.5",
+          "previousLatestVersion": "1.30.4"
+        }
+      ]
     }
   ]
 }
