@@ -1,15 +1,11 @@
 {
-  "Versions_test": [
-              {
-                "tVersion": "1.30",
-                "renovateTag": "name=moby-containerd os=ubuntu release=22.04",
-                "latestVersion": "1.3.12",
-                "secondLatestVersion": "1.3.11"     
-              },
-              {
-                "tVersion": "1.29",
-                "renovateTag": "name=moby-containerd os=ubuntu release=22.04",
-                "latestVersion": "1.3.20"   
-              }
-            ]
-}
+  "downloadURL": "mcr.microsoft.com/oss/binaries/kubernetes/kubernetes-node:*",
+  "amd64OnlyVersions": [],
+  "multiArchVersionsV2": [
+    {
+      "renovateTag": "registry=https://mcr.microsoft.com, name=oss/binaries/kubernetes/kubernetes-node",
+            "latestVersion": "1.30.5",
+            "previousLatestVersion": "1.30.4"
+    }
+  ]
+},
