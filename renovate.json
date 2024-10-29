@@ -1,51 +1,59 @@
 {
-    "extends": [
-      "config:base"
-    ],
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-    "enabledManagers": ["custom.regex"],
-    "prConcurrentLimit": 50,
-    "prHourlyLimit": 50,
     "branchConcurrentLimit": 50,
-    "separateMinorPatch": true,
-    "labels": ["renovate"],
+    "customManagers": [
+        {
+            "autoReplaceStringTemplate": "\"renovateTag\": \"registry={{{registryUrl}}}, name={{{packageName}}}\",\n          \"latestVersion\": \"{{{newValue}}}\"{{#if depType}},\n          \"previousLatestVersion\": \"{{{currentValue}}}\"{{/if}}",
+            "customType": "regex",
+            "datasourceTemplate": "docker",
+            "description": "auto update containerImages in components.json",
+            "fileMatch": [
+                "test_components_simple.json"
+            ],
+            "matchStrings": [
+                "\"renovateTag\":\\s*\"registry=(?<registryUrl>[^,]+), name=(?<packageName>[^\"]+)\",\\s*\"latestVersion\":\\s*\"(?<currentValue>[^\"]+)\"(?:[^}]*\"previousLatestVersion\":\\s*\"(?<depType>[^\"]+)\")?"
+            ],
+            "matchStringsStrategy": "any"
+        }
+    ],
+    "enabledManagers": [
+        "custom.regex"
+    ],
+    "extends": [
+        "config:base"
+    ],
+    "labels": [
+        "renovate"
+    ],
     "logLevelRemap": [
-      {
-        "matchMessage": "/^Custom manager fetcher/",
-        "newLogLevel": "info"
-      }
+        {
+            "matchMessage": "/^Custom manager fetcher/",
+            "newLogLevel": "info"
+        }
     ],
     "packageRules": [
-      {
-        "matchDatasources": ["docker"],
-        "matchUpdateTypes": [
-          "minor"
-        ],
-        "automerge": false,
-        "enabled": false
-      },
-      {
-        "matchDatasources": ["docker"],
-        "matchUpdateTypes": [
-          "patch"
-        ],
-        "automerge": false,
-        "enabled": true
-      }
+        {
+            "automerge": false,
+            "enabled": false,
+            "matchDatasources": [
+                "docker"
+            ],
+            "matchUpdateTypes": [
+                "minor"
+            ]
+        },
+        {
+            "automerge": false,
+            "enabled": true,
+            "matchDatasources": [
+                "docker"
+            ],
+            "matchUpdateTypes": [
+                "patch"
+            ]
+        }
     ],
-    "customManagers": [
-    {
-      "customType": "regex",
-      "description": "auto update containerImages in components.json",
-      "fileMatch": [
-        "parts/linux/cloud-init/artifacts/components.json"
-      ],
-      "matchStringsStrategy": "any",
-      "matchStrings": [
-        "\"renovateTag\":\\s*\"registry=(?<registryUrl>[^,]+), name=(?<packageName>[^\"]+)\",\\s*\"latestVersion\":\\s*\"(?<currentValue>[^\"]+)\"(?:[^}]*\"previousLatestVersion\":\\s*\"(?<depType>[^\"]+)\")?"
-      ],
-      "datasourceTemplate": "docker",
-      "autoReplaceStringTemplate": "\"renovateTag\": \"registry={{{registryUrl}}}, name={{{packageName}}}\",\n          \"latestVersion\": \"{{{newValue}}}\"{{#if depType}},\n          \"previousLatestVersion\": \"{{{currentValue}}}\"{{/if}}"
-    }
-]    
-  }
+    "prConcurrentLimit": 50,
+    "prHourlyLimit": 50,
+    "separateMinorPatch": true
+}
