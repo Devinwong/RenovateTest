@@ -20,6 +20,20 @@
           "previousLatestVersion": "1.30.4"
         }
       ]
+    },
+    {
+      "downloadURL": "mcr.microsoft.com/oss/v2/kubernetes/coredns:*",
+      "amd64OnlyVersions": [],
+      "multiArchVersionsV2": [
+        {
+          "renovateTag": "registry=https://mcr.microsoft.com, name=oss/v2/kubernetes/coredns",
+          "latestVersion": "v1.11.2"
+        },
+        {
+          "renovateTag": "registry=https://mcr.microsoft.com, name=oss/v2/kubernetes/coredns",
+          "latestVersion": "v1.9.3"
+        }
+      ]
     }
   ]
 }
